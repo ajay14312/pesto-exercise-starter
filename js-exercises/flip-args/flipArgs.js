@@ -6,7 +6,7 @@ function reverseArguments() {
   let argumentsArray = _.toArray(arguments);
   argumentsArray.reverse();
 
-  return _.toArray(argumentsArray);
+  return argumentsArray;
 }
 
 export { flipArgs, reverseArguments };
