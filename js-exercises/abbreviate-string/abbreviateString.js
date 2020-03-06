@@ -1,11 +1,11 @@
 import { isString } from "util";
 
 function abbreviateString(str) {
-  return isString(str)?createAbbreviateString(str):throError(str);
+  return isString(str)?createAbbreviateString(str):throwError(str);
 }
 
-function throError(str) {
-  new throError(`${str} Not a string`)
+function throwError(str) {
+  throw new Error(`${str} Not a string`)
 }
 
 function createAbbreviateString(str) {
