@@ -13,3 +13,11 @@
 .Quantity-Positive {
   padding-left: 10px;
 }
+.Black {
+  color: black;
+  cursor: pointer;
+}
+.Red {
+  color: red;
+  cursor: pointer;
+}

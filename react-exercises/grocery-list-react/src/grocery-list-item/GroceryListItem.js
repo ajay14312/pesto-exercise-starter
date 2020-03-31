@@ -4,7 +4,7 @@ import "./GroceryListItem.css";
 const GroceryListItem = props => {
   return (
     <li className="List">
-      <span className="Grocery-Name">{props.item.name}</span>
+      <span className="Grocery-Name" onClick={() => props.changeColor(props.item.id - 1)} className={`${props.item.color === 'black' ? 'Black' : 'Red'}`}>{props.item.name}</span>
       <div>
         <span className="Quantity-Negative">
           <button

@@ -34,7 +34,8 @@ class GroceryList extends Component {
         name: this.state.newGrocery,
         price: 500 * Math.random(),
         id: this.state.list.length + 1,
-        quantity: 1
+        quantity: 1,
+        color: 'black'
       };
       newlist.push(newItem);
     }
@@ -52,6 +53,17 @@ class GroceryList extends Component {
   clearAll = () => {
     this.setState(currentState => (currentState.list = []));
   };
+
+  changeColor = (index) => {
+    const groceryItemID = index;
+    const newlist = [...this.state.list];
+    if(newlist[groceryItemID].color === 'black'){
+      newlist[groceryItemID].color = 'red';
+    } else {
+      newlist[groceryItemID].color = 'black';
+    }
+    this.setState({ list: newlist });
+  }
 
   render() {
     let header;
@@ -100,6 +112,7 @@ class GroceryList extends Component {
                 item={item}
                 key={item.id}
                 updateQuantity={this.updateQuantity}
+                changeColor={this.changeColor}
               />
             ))}
           </ul>
