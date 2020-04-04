@@ -82,12 +82,14 @@ class GroceryList extends Component {
             <h1>Grocery List</h1>
           </div>
           <div className="Grocery-List">
-            <input
+            <input data-testid="grocery-name"
               className="Grocery-Input"
               value={this.state.newGrocery}
               onChange={this.updateNewGrocery}
+              placeholder="Enter grocery name"
             />
             <button
+              data-testid="add-grocery-btn"
               className={`${
                 !this.state.newGrocery ? "Disable-Btn" : ""
               } Grocery-Btn`}
