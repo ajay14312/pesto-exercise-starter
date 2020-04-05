@@ -5,3 +5,17 @@
   height: 600px;
   border: 1px solid black;
 }
+
+.bombText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+}
+
+.bombText::after {
+  content: '\1F4A5';
+  font-size: 100px;
+}

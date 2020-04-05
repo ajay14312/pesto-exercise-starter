@@ -4,7 +4,8 @@ import Food from './food/Food';
 import { KeyCodes } from './app_conts'
 
 function App() {
-  const [food, setFood] = useState({ food: [setFoodPosition()] });
+  const [food, setFood] = useState({ food: { apple: setFoodPosition(), bomb: setFoodPosition() } });
+  const [isBombAte, setIsBombAte] = useState(false);
   const [direction, seDirection] = useState('RIGHT');
   const [snakeData, setSnakeData] = useState({
     snakeDots: [[50, 50], [52, 50], [54, 50]]
@@ -58,24 +59,25 @@ function App() {
       if (head[0] !== dots[dots.length - 2][0]) {
         seDirection('UP');
       }
+    } else if (event === KeyCodes.ENTER) {
+      reset();
     }
   }
 
   function gameOver() {
     let head = snakeData.snakeDots[snakeData.snakeDots.length - 1];
     if (head[0] >= 100 || head[1] >= 100 || head[0] < 0 || head[1] < 0) {
-      reset();
+      setIsBombAte(true);
+      //reset();
     }
   }
 
   function reset() {
     setScore(0);
     setSnakeData({
-      snakeDots: [
-        [0, 0],
-        [2, 0]
-      ]
+      snakeDots: [[50, 50], [52, 50], [54, 50]]
     })
+    setIsBombAte(false);
   }
 
   function moveSnake() {
@@ -102,15 +104,18 @@ function App() {
 
   function eatFood() {
     let dots = snakeData.snakeDots;
-    let head = dots[0];
-    if (head[0] === food.food[0][0] && head[1] === food.food[0][1]) {
+    let head = dots[dots.length - 1];
+    if (head[0] === food.food.apple[0] && head[1] === food.food.apple[1]) {
       setScore(score + 1);
       dots.unshift([]);
-      setFood({ food: [setFoodPosition()] });
+      setFood({ food: { apple: setFoodPosition(), bomb: setFoodPosition() } });
       setSnakeData({ snakeDots: dots });
       if (snakeSpeed > 20) {
         setSnakeSpeed(snakeSpeed - 10);
       }
+    } else if (head[0] === food.food.bomb[0] && head[1] === food.food.bomb[1]) {
+      setIsBombAte(true);
+      //reset();
     }
   }
 
@@ -118,17 +123,25 @@ function App() {
     let dots = snakeData.snakeDots;
     let head = dots[dots.length - 1];
     if (direction === 'RIGHT' || direction === 'LEFT') {
-      if (food.food[0][1] === head[1]) {
+      if (food.food.apple[1] === head[1]) {
         setIsSnakeNearFood(true);
       } else {
         setIsSnakeNearFood(false);
       }
     } else {
-      if (food.food[0][0] === head[0]) {
+      if (food.food.apple[0] === head[0]) {
         setIsSnakeNearFood(true);
       } else {
         setIsSnakeNearFood(false);
       }
+    }
+  }
+
+  function setBomb() {
+    if (score > 0 && score % 5 === 0) {
+      return <Food foodData={food.food.bomb} isSnakeNearFood={isSnakeNearFood} bomb={true}></Food>
+    } else {
+      return '';
     }
   }
 
@@ -143,11 +156,16 @@ function App() {
         </div>
       </div>
       <div className="game">
-        <Snake snakeData={snakeData.snakeDots}></Snake>
-        <Food foodData={food.food} isSnakeNearFood={isSnakeNearFood}></Food>
+        {!isBombAte ? <div>
+          <Snake snakeData={snakeData.snakeDots}></Snake>
+          <Food foodData={food.food.apple} isSnakeNearFood={isSnakeNearFood}></Food>
+          {setBomb()}
+        </div> : <div className="bombText">
+            <p>Ohh Noo!! You Died. Press enter to restart the game</p>
+          </div>}
       </div>
     </div>
-  );
+  )
 }
 
 export default App;
