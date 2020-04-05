@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/pesto-exercise-starter/static/css/main.26f67212.chunk.css",
-    "main.js": "/pesto-exercise-starter/static/js/main.27ebddb9.chunk.js",
-    "main.js.map": "/pesto-exercise-starter/static/js/main.27ebddb9.chunk.js.map",
+    "main.css": "/pesto-exercise-starter/static/css/main.d80e5a91.chunk.css",
+    "main.js": "/pesto-exercise-starter/static/js/main.5b391577.chunk.js",
+    "main.js.map": "/pesto-exercise-starter/static/js/main.5b391577.chunk.js.map",
     "runtime-main.js": "/pesto-exercise-starter/static/js/runtime-main.38210067.js",
     "runtime-main.js.map": "/pesto-exercise-starter/static/js/runtime-main.38210067.js.map",
     "static/js/2.ed56b726.chunk.js": "/pesto-exercise-starter/static/js/2.ed56b726.chunk.js",
     "static/js/2.ed56b726.chunk.js.map": "/pesto-exercise-starter/static/js/2.ed56b726.chunk.js.map",
     "index.html": "/pesto-exercise-starter/index.html",
-    "precache-manifest.b3758ed920074a8ff8491696c6e71cd9.js": "/pesto-exercise-starter/precache-manifest.b3758ed920074a8ff8491696c6e71cd9.js",
+    "precache-manifest.14fc1de246be7402800af30893fe5e07.js": "/pesto-exercise-starter/precache-manifest.14fc1de246be7402800af30893fe5e07.js",
     "service-worker.js": "/pesto-exercise-starter/service-worker.js",
-    "static/css/main.26f67212.chunk.css.map": "/pesto-exercise-starter/static/css/main.26f67212.chunk.css.map",
+    "static/css/main.d80e5a91.chunk.css.map": "/pesto-exercise-starter/static/css/main.d80e5a91.chunk.css.map",
     "static/js/2.ed56b726.chunk.js.LICENSE.txt": "/pesto-exercise-starter/static/js/2.ed56b726.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.38210067.js",
     "static/js/2.ed56b726.chunk.js",
-    "static/css/main.26f67212.chunk.css",
-    "static/js/main.27ebddb9.chunk.js"
+    "static/css/main.d80e5a91.chunk.css",
+    "static/js/main.5b391577.chunk.js"
   ]
 }
