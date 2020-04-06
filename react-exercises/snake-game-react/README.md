@@ -2,9 +2,9 @@
 
 # Submission
 
-Game URL: _____
+Game URL: https://ajay14312.github.io/pesto-exercise-starter/
 
-Mockup URL: _____
+Mockup URL: https://balsamiq.cloud/swtic1s/p1596zl
 
 ## How to do the question
 - Make a new branch `snake-game`.
