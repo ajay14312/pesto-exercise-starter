@@ -9,7 +9,7 @@ function App() {
   const [isBombAte, setIsBombAte] = useState(false);
   const [direction, setDirection] = useState('RIGHT');
   const [snakeData, setSnakeData] = useState({
-    snakeDots: [[50, 50], [52, 50], [54, 50]]
+    snakePositions: [[50, 50], [52, 50], [54, 50]]
   })
   let [score, setScore] = useState(0);
   let [highScore, setHighScore] = useState(0);
@@ -19,36 +19,37 @@ function App() {
   useEffect(() => {
     gameOver();
     eatFood();
+    checkSnakecollapse();
     checkSnakeNearFood();
-    const int = setInterval(moveSnake, snakeSpeed);
+    const snakeMoveinterval = setInterval(moveSnake, snakeSpeed);
     if (score > highScore) {
       setHighScore(score);
     }
     window.onkeydown = checkKeyDown;
-    return () => clearInterval(int);
-  }, [direction, moveSnake, snakeData.snakeDots]);
+    return () => clearInterval(snakeMoveinterval);
+  }, [direction, moveSnake, snakeData.snakePositions]);
 
 
   function checkKeyDown(e) {
 
-    let dots = snakeData.snakeDots;
-    let head = dots[dots.length - 1];
+    let snakePositions = snakeData.snakePositions;
+    let head = snakePositions[snakePositions.length - 1];
     const event = e.keyCode;
 
     if (event === KeyCodes.RIGHT) {
-      if (head[1] !== dots[dots.length - 2][1]) {
+      if (head[1] !== snakePositions[snakePositions.length - 2][1]) {
         setDirection('RIGHT');
       }
     } else if (event === KeyCodes.LEFT) {
-      if (head[1] !== dots[dots.length - 2][1]) {
+      if (head[1] !== snakePositions[snakePositions.length - 2][1]) {
         setDirection('LEFT');
       }
     } else if (event === KeyCodes.DOWN) {
-      if (head[0] !== dots[dots.length - 2][0]) {
+      if (head[0] !== snakePositions[snakePositions.length - 2][0]) {
         setDirection('DOWN');
       }
     } else if (event === KeyCodes.UP) {
-      if (head[0] !== dots[dots.length - 2][0]) {
+      if (head[0] !== snakePositions[snakePositions.length - 2][0]) {
         setDirection('UP');
       }
     } else if (event === KeyCodes.ENTER) {
@@ -57,10 +58,9 @@ function App() {
   }
 
   function gameOver() {
-    let head = snakeData.snakeDots[snakeData.snakeDots.length - 1];
+    let head = snakeData.snakePositions[snakeData.snakePositions.length - 1];
     if (head[0] >= 100 || head[1] >= 100 || head[0] < 0 || head[1] < 0) {
       setIsBombAte(true);
-      //reset();
     }
   }
 
@@ -69,14 +69,14 @@ function App() {
     setSnakeSpeed(200)
     setScore(0);
     setSnakeData({
-      snakeDots: [[50, 50], [52, 50], [54, 50]]
+      snakePositions: [[50, 50], [52, 50], [54, 50]]
     })
     setIsBombAte(false);
   }
 
   function moveSnake() {
-    let dots = snakeData.snakeDots;
-    let head = dots[dots.length - 1];
+    let snakePositions = snakeData.snakePositions;
+    let head = snakePositions[snakePositions.length - 1];
     switch (direction) {
       case 'RIGHT':
         head = [head[0] + 2, head[1]];
@@ -91,31 +91,42 @@ function App() {
         head = [head[0], head[1] - 2];
         break;
     }
-    dots.push(head);
-    dots.shift();
-    setSnakeData({ snakeDots: dots });
+    snakePositions.push(head);
+    snakePositions.shift();
+    setSnakeData({ snakePositions: snakePositions });
+  }
+
+  function checkSnakecollapse() {
+    const snake = [...snakeData.snakePositions]
+    let head = snake[snake.length - 1];
+    snake.pop();
+    for (let snakeCoordinates of snake) {
+      console.log(head, snakeCoordinates)
+      if (head[0] === snakeCoordinates[0] && head[1] === snakeCoordinates[1]) {
+        setIsBombAte(true);
+      }
+    }
   }
 
   function eatFood() {
-    let dots = snakeData.snakeDots;
-    let head = dots[dots.length - 1];
+    let snakePositions = snakeData.snakePositions;
+    let head = snakePositions[snakePositions.length - 1];
     if (head[0] === food.food.apple[0] && head[1] === food.food.apple[1]) {
       setScore(score + 1);
-      dots.unshift([]);
+      snakePositions.unshift([]);
       setFood({ food: { apple: setFoodPosition(), bomb: setFoodPosition() } });
-      setSnakeData({ snakeDots: dots });
+      setSnakeData({ snakePositions: snakePositions });
       if (snakeSpeed > 20) {
         setSnakeSpeed(snakeSpeed - 10);
       }
     } else if (head[0] === food.food.bomb[0] && head[1] === food.food.bomb[1]) {
       setIsBombAte(true);
-      //reset();
     }
   }
 
   function checkSnakeNearFood() {
-    let dots = snakeData.snakeDots;
-    let head = dots[dots.length - 1];
+    let snakePositions = snakeData.snakePositions;
+    let head = snakePositions[snakePositions.length - 1];
     if (direction === 'RIGHT' || direction === 'LEFT') {
       if (food.food.apple[1] === head[1]) {
         setIsSnakeNearFood(true);
@@ -150,13 +161,16 @@ function App() {
         </div>
       </div>
       <div className="game">
-        {!isBombAte ? <div>
-          <Snake snakeData={snakeData.snakeDots}></Snake>
+        {!isBombAte ? (<div>
+          <Snake snakeData={snakeData.snakePositions}></Snake>
           <Food foodData={food.food.apple} isSnakeNearFood={isSnakeNearFood}></Food>
           {setBomb()}
-        </div> : <div className="bombText">
-            <p>Ohh Noo!! You Died. Press enter to restart the game</p>
-          </div>}
+        </div>) :
+          (<div className="endGame">
+            <div className="bombText">Ohh Noo!! You Died. Press enter to restart the game</div>
+            {highScore > 0 ?
+              <div className="highScoreText">High Score : {highScore}</div> : ''}
+          </div>)}
       </div>
     </div>
   )

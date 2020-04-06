@@ -1,3 +1,6 @@
+html, body {
+  font-family: sans-serif;
+}
 .game {
   position: relative;
   margin: 50px auto;
@@ -6,11 +9,17 @@
   border: 1px solid black;
 }
 
-.bombText {
+.endGame {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bombText {
   display: flex;
   align-items: center;
 }
@@ -18,4 +27,8 @@
 .bombText::after {
   content: '\1F4A5';
   font-size: 100px;
+}
+
+.highScoreText {
+  font-size: 40px;
 }
