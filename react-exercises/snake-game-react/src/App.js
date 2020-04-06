@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Snake from './snake/Snake';
 import Food from './food/Food';
-import { KeyCodes } from './app_conts'
+import { KeyCodes } from './app_conts';
+import setFoodPosition from './utils/Utils';
 
 function App() {
   const [food, setFood] = useState({ food: { apple: setFoodPosition(), bomb: setFoodPosition() } });
@@ -14,15 +15,6 @@ function App() {
   let [highScore, setHighScore] = useState(0);
   let [snakeSpeed, setSnakeSpeed] = useState(200);
   let [isSnakeNearFood, setIsSnakeNearFood] = useState(false);
-
-  function setFoodPosition() {
-    let min = 1;
-    let max = 98;
-    let x = (Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2);
-    let y = (Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2);
-
-    return [x, y];
-  }
 
   useEffect(() => {
     gameOver();
