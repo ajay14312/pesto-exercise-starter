@@ -11,7 +11,7 @@ const Snake = (props) => {
             top: `${snakeCoordinates[1]}%`
           }
           return (
-            <div className="snake" key={i} style={snakePosition}></div>
+            <div className="snake" key={i} style={snakePosition} data-testid={`snake-${i}`}></div>
           )
         })
       }

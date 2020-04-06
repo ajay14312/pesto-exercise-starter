@@ -4,7 +4,7 @@ import Food from './food/Food';
 import { KeyCodes } from './app_conts';
 import setFoodPosition from './utils/Utils';
 
-function App() {
+const App = () => {
   const [food, setFood] = useState({ food: { apple: setFoodPosition(), bomb: setFoodPosition() } });
   const [isBombAte, setIsBombAte] = useState(false);
   const [direction, setDirection] = useState('RIGHT');
@@ -101,7 +101,6 @@ function App() {
     let head = snake[snake.length - 1];
     snake.pop();
     for (let snakeCoordinates of snake) {
-      console.log(head, snakeCoordinates)
       if (head[0] === snakeCoordinates[0] && head[1] === snakeCoordinates[1]) {
         setIsBombAte(true);
       }
@@ -151,13 +150,13 @@ function App() {
   }
 
   return (
-    <div>
+    <div data-testid="container">
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div>
           Score: {score}
         </div>
-        <div>
-          High Score: {highScore}
+        <div >
+          High Score: <span data-testid="highScore">{highScore}</span>
         </div>
       </div>
       <div className="game">
