@@ -30,29 +30,33 @@ const App = () => {
   }, [direction, moveSnake, snakeData.snakePositions]);
 
 
-  function checkKeyDown(e) {
+  function checkKeyDown(event) {
 
     let snakePositions = snakeData.snakePositions;
     let head = snakePositions[snakePositions.length - 1];
-    const event = e.keyCode;
+    const keyCode = event.keyCode;
 
-    if (event === KeyCodes.RIGHT) {
+    if (keyCode === KeyCodes.RIGHT) {
+      event.preventDefault();
       if (head[1] !== snakePositions[snakePositions.length - 2][1]) {
         setDirection('RIGHT');
       }
-    } else if (event === KeyCodes.LEFT) {
+    } else if (keyCode === KeyCodes.LEFT) {
+      event.preventDefault();
       if (head[1] !== snakePositions[snakePositions.length - 2][1]) {
         setDirection('LEFT');
       }
-    } else if (event === KeyCodes.DOWN) {
+    } else if (keyCode === KeyCodes.DOWN) {
+      event.preventDefault();
       if (head[0] !== snakePositions[snakePositions.length - 2][0]) {
         setDirection('DOWN');
       }
-    } else if (event === KeyCodes.UP) {
+    } else if (keyCode === KeyCodes.UP) {
+      event.preventDefault();
       if (head[0] !== snakePositions[snakePositions.length - 2][0]) {
         setDirection('UP');
       }
-    } else if (event === KeyCodes.ENTER) {
+    } else if (keyCode === KeyCodes.ENTER) {
       reset();
     }
   }
@@ -151,6 +155,9 @@ const App = () => {
 
   return (
     <div data-testid="container">
+      <div style={{ textAlign: 'center' }}>
+        <h3>Snake Game</h3>
+      </div>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div>
           Score: {score}
@@ -158,6 +165,11 @@ const App = () => {
         <div >
           High Score: <span data-testid="highScore">{highScore}</span>
         </div>
+      </div>
+      <div>
+        <ul style={{ listStyle: 'none' }}>
+          <li>Use <b>Left, Right, Top and Down</b> arrows to play with the snake</li>
+        </ul>
       </div>
       <div className="game">
         {!isBombAte ? (<div>
