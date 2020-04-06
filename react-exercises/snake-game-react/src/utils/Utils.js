@@ -1,10 +1,10 @@
 function setFoodPosition() {
   let min = 1;
   let max = 98;
-  let x = (Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2);
-  let y = (Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2);
+  let XCoordinate = (Math.floor((Math.random() * max + min) / 2) * 2);
+  let YCoordinate = (Math.floor((Math.random() * max + min) / 2) * 2);
 
-  return [x, y];
+  return [XCoordinate, YCoordinate];
 }
 
 export default setFoodPosition;
