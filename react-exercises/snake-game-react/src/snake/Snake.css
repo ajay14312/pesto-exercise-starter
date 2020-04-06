@@ -1,0 +1,29 @@
+.snake {
+  position: absolute;
+  width: 2%;
+  height: 2%;
+  background-color: black;
+  border: 1px solid #fff;
+}
+
+.snake:nth-child(3n+0) {
+  background-color: yellow;
+}
+
+.snake:nth-child(3n+1) {
+  background-color: black;
+}
+
+.snake:nth-child(3n+2) {
+  background-color: red;
+}
+
+.snake:first-child {
+  background-color: chartreuse;
+}
+
+.snake:last-child {
+  border-radius: 50%;
+  background-color: black;
+  z-index: 2;
+}
