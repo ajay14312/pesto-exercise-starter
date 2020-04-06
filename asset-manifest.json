@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/pesto-exercise-starter/static/css/main.97423c2e.chunk.css",
-    "main.js": "/pesto-exercise-starter/static/js/main.0ac10005.chunk.js",
-    "main.js.map": "/pesto-exercise-starter/static/js/main.0ac10005.chunk.js.map",
+    "main.js": "/pesto-exercise-starter/static/js/main.8becfd7e.chunk.js",
+    "main.js.map": "/pesto-exercise-starter/static/js/main.8becfd7e.chunk.js.map",
     "runtime-main.js": "/pesto-exercise-starter/static/js/runtime-main.38210067.js",
     "runtime-main.js.map": "/pesto-exercise-starter/static/js/runtime-main.38210067.js.map",
     "static/js/2.06214dce.chunk.js": "/pesto-exercise-starter/static/js/2.06214dce.chunk.js",
     "static/js/2.06214dce.chunk.js.map": "/pesto-exercise-starter/static/js/2.06214dce.chunk.js.map",
     "index.html": "/pesto-exercise-starter/index.html",
-    "precache-manifest.8b0a7bb6ae9df6886d6f442254af40e1.js": "/pesto-exercise-starter/precache-manifest.8b0a7bb6ae9df6886d6f442254af40e1.js",
+    "precache-manifest.2c11311b7888d7351afce7b5e0a318aa.js": "/pesto-exercise-starter/precache-manifest.2c11311b7888d7351afce7b5e0a318aa.js",
     "service-worker.js": "/pesto-exercise-starter/service-worker.js",
     "static/css/main.97423c2e.chunk.css.map": "/pesto-exercise-starter/static/css/main.97423c2e.chunk.css.map",
     "static/js/2.06214dce.chunk.js.LICENSE.txt": "/pesto-exercise-starter/static/js/2.06214dce.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.38210067.js",
     "static/js/2.06214dce.chunk.js",
     "static/css/main.97423c2e.chunk.css",
-    "static/js/main.0ac10005.chunk.js"
+    "static/js/main.8becfd7e.chunk.js"
   ]
 }
