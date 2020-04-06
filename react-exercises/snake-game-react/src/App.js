@@ -6,7 +6,7 @@ import { KeyCodes } from './app_conts'
 function App() {
   const [food, setFood] = useState({ food: { apple: setFoodPosition(), bomb: setFoodPosition() } });
   const [isBombAte, setIsBombAte] = useState(false);
-  const [direction, seDirection] = useState('RIGHT');
+  const [direction, setDirection] = useState('RIGHT');
   const [snakeData, setSnakeData] = useState({
     snakeDots: [[50, 50], [52, 50], [54, 50]]
   })
@@ -45,19 +45,19 @@ function App() {
 
     if (event === KeyCodes.RIGHT) {
       if (head[1] !== dots[dots.length - 2][1]) {
-        seDirection('RIGHT');
+        setDirection('RIGHT');
       }
     } else if (event === KeyCodes.LEFT) {
       if (head[1] !== dots[dots.length - 2][1]) {
-        seDirection('LEFT');
+        setDirection('LEFT');
       }
     } else if (event === KeyCodes.DOWN) {
       if (head[0] !== dots[dots.length - 2][0]) {
-        seDirection('DOWN');
+        setDirection('DOWN');
       }
     } else if (event === KeyCodes.UP) {
       if (head[0] !== dots[dots.length - 2][0]) {
-        seDirection('UP');
+        setDirection('UP');
       }
     } else if (event === KeyCodes.ENTER) {
       reset();
@@ -73,6 +73,8 @@ function App() {
   }
 
   function reset() {
+    setDirection('RIGHT');
+    setSnakeSpeed(200)
     setScore(0);
     setSnakeData({
       snakeDots: [[50, 50], [52, 50], [54, 50]]
