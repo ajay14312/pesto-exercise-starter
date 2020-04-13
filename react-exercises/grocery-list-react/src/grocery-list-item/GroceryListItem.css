@@ -1,0 +1,23 @@
+.List {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+.Grocery-Name {
+  width: 70%;
+}
+.Quantity-Negative {
+  padding-right: 10px;
+}
+.Quantity-Positive {
+  padding-left: 10px;
+}
+.Black {
+  color: black;
+  cursor: pointer;
+}
+.Red {
+  color: red;
+  cursor: pointer;
+}
